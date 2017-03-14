@@ -1,4 +1,5 @@
 I'll add features to this occsaionlly as I'm still trying to figure the code out in the process. [3/13/17]
+
 Goals: Auto start download queue; New chapter notifications; custom favorites;
 
 Aizoban
