@@ -2,18 +2,23 @@ package com.jparkie.aizoban.views.activities;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jparkie.aizoban.R;
 import com.jparkie.aizoban.presenters.MainPresenter;
 import com.jparkie.aizoban.presenters.MainPresenterImpl;
+import com.jparkie.aizoban.utils.PreferenceUtils;
 import com.jparkie.aizoban.views.MainView;
 
 public class MainActivity extends BaseActivity implements MainView {
@@ -29,6 +34,9 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    
+    private ImageView mThumbnailImageView;
+    private TextView mSourceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +166,13 @@ public class MainActivity extends BaseActivity implements MainView {
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
 
+                    //sets source
+                    mSourceTextView = (TextView) findViewById(R.id.sourceTextView);
+                    mSourceTextView.setText(PreferenceUtils.getSource().toUpperCase());
+                    // TODO: 6/8/2016 add thumbnail change later or not cuz it seems to work out anyways
+                    // TODO: 6/8/2016 the only real thing that needs to be done here is to make the text change upon new slection but I gotta find that still
+                    Log.e("SideBar", "Created just now");
+                    
                     invalidateOptionsMenu();
                     // Do Nothing.
                 }

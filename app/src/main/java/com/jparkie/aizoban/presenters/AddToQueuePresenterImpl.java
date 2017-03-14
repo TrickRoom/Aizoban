@@ -5,18 +5,22 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseBooleanArray;
+import android.view.Menu;
 
 import com.jparkie.aizoban.BuildConfig;
+import com.jparkie.aizoban.R;
 import com.jparkie.aizoban.controllers.QueryManager;
 import com.jparkie.aizoban.controllers.downloads.DownloadService;
 import com.jparkie.aizoban.models.Chapter;
 import com.jparkie.aizoban.models.downloads.DownloadChapter;
 import com.jparkie.aizoban.presenters.mapper.AddToQueueMapper;
+import com.jparkie.aizoban.utils.PreferenceUtils;
 import com.jparkie.aizoban.utils.wrappers.DownloadChapterFilteringCursorWrapper;
 import com.jparkie.aizoban.utils.wrappers.RequestWrapper;
 import com.jparkie.aizoban.views.AddToQueueView;
 import com.jparkie.aizoban.views.adapters.AddToQueueAdapter;
 import com.jparkie.aizoban.views.fragments.AddToQueueFragment;
+import com.jparkie.aizoban.views.fragments.QueueFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +49,7 @@ public class AddToQueuePresenterImpl implements AddToQueuePresenter {
     private Parcelable mPositionSavedState;
 
     private Subscription mQueryBothChaptersSubscription;
+
 
     public AddToQueuePresenterImpl(AddToQueueView addToQueueView, AddToQueueMapper addToQueueMapper) {
         mAddToQueueView = addToQueueView;
@@ -136,7 +141,14 @@ public class AddToQueuePresenterImpl implements AddToQueuePresenter {
                 }
             }
 
-            if (chaptersToDownload.size() != 0) {
+            if(chaptersToDownload.size() != 0 && PreferenceUtils.isAutoDownloading()){ //if the auto download boolean is true then it will auto start the downloading
+                Intent startService = new Intent(mAddToQueueView.getContext(), DownloadService.class);
+                startService.putExtra(DownloadService.INTENT_QUEUE_DOWNLOAD, chaptersToDownload);
+                startService.putExtra(DownloadService.INTENT_START_DOWNLOAD, chaptersToDownload);
+                mAddToQueueView.getContext().startService(startService);
+
+            }
+            else if (chaptersToDownload.size() != 0) { //if false it just add's them to queue
                 Intent startService = new Intent(mAddToQueueView.getContext(), DownloadService.class);
                 startService.putExtra(DownloadService.INTENT_QUEUE_DOWNLOAD, chaptersToDownload);
                 mAddToQueueView.getContext().startService(startService);

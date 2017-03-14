@@ -143,4 +143,14 @@ public class PreferenceUtils {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getString(context.getString(R.string.preference_download_storage_key), context.getFilesDir().getAbsolutePath());
     }
+
+
+    //my edits and new stuff here
+    public static boolean isAutoDownloading() {
+        Context context = AizobanApplication.getInstance();
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getBoolean(context.getString(R.string.preference_download_auto_key), false);
+    }
+
 }

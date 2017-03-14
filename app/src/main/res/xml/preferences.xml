@@ -72,6 +72,11 @@
         android:key="@string/preference_category_download_key"
         android:title="@string/preference_category_download_title">
         <CheckBoxPreference
+            android:key="@string/preference_download_auto_key"
+            android:title="@string/preference_download_auto_title"
+            android:summary="@string/preference_download_auto_title_summary"
+            android:defaultValue="false"/>
+        <CheckBoxPreference
             android:key="@string/preference_download_wifi_key"
             android:title="@string/preference_download_wifi_title"
             android:summary="@string/preference_download_wifi_summary"

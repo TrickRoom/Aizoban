@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -20,8 +21,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jparkie.aizoban.R;
+import com.jparkie.aizoban.controllers.downloads.DownloadService;
 import com.jparkie.aizoban.presenters.AddToQueuePresenter;
 import com.jparkie.aizoban.presenters.AddToQueuePresenterImpl;
+import com.jparkie.aizoban.presenters.QueuePresenter;
+import com.jparkie.aizoban.presenters.QueuePresenterImpl;
 import com.jparkie.aizoban.presenters.mapper.AddToQueueMapper;
 import com.jparkie.aizoban.utils.wrappers.RequestWrapper;
 import com.jparkie.aizoban.views.AddToQueueView;
@@ -36,6 +40,10 @@ public class AddToQueueFragment extends DialogFragment implements AddToQueueView
     private ListView mListView;
     private RelativeLayout mEmptyRelativeLayout;
     private Button mToggleButton;
+
+    private final Context context= this.context;
+
+
 
     public static AddToQueueFragment newInstance(RequestWrapper mangaRequest) {
         AddToQueueFragment newInstance = new AddToQueueFragment();
@@ -67,6 +75,7 @@ public class AddToQueueFragment extends DialogFragment implements AddToQueueView
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mAddToQueuePresenter.onQueueButtonClick();
+
                     }
                 })
                 .setNeutralButton(R.string.add_to_queue_dialog_button_toggle_all, new DialogInterface.OnClickListener() {

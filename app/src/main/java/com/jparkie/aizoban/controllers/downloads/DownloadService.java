@@ -13,6 +13,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 import com.jparkie.aizoban.BuildConfig;
 import com.jparkie.aizoban.R;
@@ -154,6 +155,7 @@ public class DownloadService extends Service implements Observer<File> {
         initializeNotification();
 
         mIsInitialized = true;
+        Log.e("DownloadService", "Initialized");
     }
 
     private void initializeWakeLock() {
@@ -162,6 +164,7 @@ public class DownloadService extends Service implements Observer<File> {
         if (!mWakeLock.isHeld()) {
             mWakeLock.acquire();
         }
+        Log.e("WakeLock", "Started");
     }
 
     private void releaseWakeLock() {
@@ -180,6 +183,8 @@ public class DownloadService extends Service implements Observer<File> {
                 KEEP_ALIVE_TIME_UNIT,
                 new LinkedBlockingDeque<Runnable>()
         );
+        Log.e("TPE", "Started");
+
     }
 
     private void initializeDownloadChapterPublishSubject() {
@@ -200,6 +205,8 @@ public class DownloadService extends Service implements Observer<File> {
                         startDownloadToSubscriptionMap(allowedChapter);
                     }
                 });
+        Log.e("DCPS", "Started");
+
     }
 
     private void initializeNetworkChangeBroadcastObservable() {
@@ -227,6 +234,8 @@ public class DownloadService extends Service implements Observer<File> {
                         }
                     }
                 });
+        Log.e("NCBO", "Started");
+
     }
 
     private void startDownloadToSubscriptionMap(final DownloadChapter downloadChapter) {
@@ -566,5 +575,7 @@ public class DownloadService extends Service implements Observer<File> {
                 .setContentIntent(pendingIntent);
 
         startForeground(DOWNLOAD_NOTIFICATION_ID, mDownloadNotificationBuilder.build());
+        Log.e("Initialize Notification", "Started");
+
     }
 }

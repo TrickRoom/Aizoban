@@ -104,6 +104,10 @@
     <string name="preference_download_storage_title">Current Download Directory</string>
     <string name="preference_download_storage_title_summary">Download all chapters to the specified directory</string>
 
+    <string name="preference_download_auto_key">preference_download_auto</string>
+    <string name="preference_download_auto_title">Auto Download Queue</string>
+    <string name="preference_download_auto_title_summary">Download queued items automatically</string>
+
     <!-- Advanced: -->
     <string name="preference_clear_latest_key">preference_clear_latest</string>
     <string name="preference_clear_latest_title">Clear Latest Manga</string>

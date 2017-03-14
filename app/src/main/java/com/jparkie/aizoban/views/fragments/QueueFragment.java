@@ -1,6 +1,7 @@
 package com.jparkie.aizoban.views.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jparkie.aizoban.R;
+import com.jparkie.aizoban.controllers.downloads.DownloadService;
 import com.jparkie.aizoban.presenters.QueuePresenter;
 import com.jparkie.aizoban.presenters.QueuePresenterImpl;
 import com.jparkie.aizoban.presenters.mapper.QueueMapper;
@@ -113,7 +115,7 @@ public class QueueFragment extends Fragment implements QueueView, QueueMapper {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_start_downloader:
-                mQueuePresenter.onOptionStartDownloader();
+                mQueuePresenter.onOptionStartDownloader(); //starts download
                 return true;
             case R.id.action_stop_downloader:
                 mQueuePresenter.onOptionStopDownloader();
@@ -272,4 +274,5 @@ public class QueueFragment extends Fragment implements QueueView, QueueMapper {
             mListView.onRestoreInstanceState(state);
         }
     }
+
 }

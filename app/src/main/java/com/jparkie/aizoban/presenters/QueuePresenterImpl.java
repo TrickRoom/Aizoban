@@ -122,14 +122,14 @@ public class QueuePresenterImpl implements QueuePresenter {
     }
 
     @Override
-    public void onOptionStartDownloader() {
+    public void onOptionStartDownloader() { //function that starts download
         Intent startService = new Intent(mQueueView.getContext(), DownloadService.class);
-        startService.putExtra(DownloadService.INTENT_START_DOWNLOAD, DownloadService.INTENT_START_DOWNLOAD);
-        mQueueView.getContext().startService(startService);
+        startService.putExtra(DownloadService.INTENT_START_DOWNLOAD, DownloadService.INTENT_START_DOWNLOAD); //gives the download intent
+        mQueueView.getContext().startService(startService); //begins download service
     }
 
     @Override
-    public void onOptionStopDownloader() {
+    public void onOptionStopDownloader() { //function to stop download
         Intent startService = new Intent(mQueueView.getContext(), DownloadService.class);
         startService.putExtra(DownloadService.INTENT_STOP_DOWNLOAD, DownloadService.INTENT_STOP_DOWNLOAD);
         mQueueView.getContext().startService(startService);
@@ -255,3 +255,8 @@ public class QueuePresenterImpl implements QueuePresenter {
         }
     }
 }
+
+// TODO: 6/8/2016 Ability to auto-start queued chapter downloads
+    //on adition to queue initiate download thing (done)
+    //have settings boolean (done)
+    //add notification too
