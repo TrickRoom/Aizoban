@@ -1,3 +1,5 @@
+I'll add features to this occsaionlly as I'm still trying to figure the code out in the process. 
+
 Aizoban
 =======
 
